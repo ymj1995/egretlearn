@@ -37,12 +37,24 @@ class GameControl extends egret.Sprite{
 	}
 
     public onGameStartHandler():void{
+        if (this.GameScene && this.GameScene.parent){
+            this.currentStage.removeChild(this.GameScene);
+        }
+        if (this.GameOver && this.GameOver.parent){
+            this.currentStage.removeChild(this.GameOver);
+        }
+		this.currentStage.addChild(this.StartGame);
+		// GameApp.xia.visible = false;
+    }
+
+    public onGameHandler():void{
         if (this.StartGame && this.StartGame.parent){
             this.currentStage.removeChild(this.StartGame);
         }
         if (this.GameOver && this.GameOver.parent){
             this.currentStage.removeChild(this.GameOver);
         }
+        console.log("点击之后进来了")
 		this.currentStage.addChild(this.GameScene);
 		// GameApp.xia.visible = false;
     }

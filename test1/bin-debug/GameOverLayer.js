@@ -8,7 +8,7 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
-//游戏管理
+//游戏结束
 var GameOverLayer = (function (_super) {
     __extends(GameOverLayer, _super);
     function GameOverLayer() {

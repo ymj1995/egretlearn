@@ -1,4 +1,4 @@
-//游戏管理
+//游戏準備
 class StartGameLayer extends egret.Sprite{
     public constructor(){
         super();//获取最近的一个父类
@@ -22,7 +22,7 @@ class StartGameLayer extends egret.Sprite{
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     }
     private onButtonClick() {
-        GameControl.Instance.onGameStartHandler();
+        GameControl.Instance.onGameHandler();
     }
     private createBitmapByName(name: string): egret.Bitmap {
         let result = new egret.Bitmap();

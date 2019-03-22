@@ -18,8 +18,8 @@ class GameApp extends egret.DisplayObjectContainer {
         GameApp.stageH = stageH;
 
 		GameControl.Instance.setStageHandler(this);
-        //游戏开始
-        // GameControl.Instance.onGameStartHandler();
+        //游戏开始界面
+        GameControl.Instance.onGameStartHandler();
 	}
 
     private createBitmapByName(name: string): egret.Bitmap {

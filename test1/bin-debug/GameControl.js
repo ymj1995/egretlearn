@@ -41,12 +41,23 @@ var GameControl = (function (_super) {
         this.currentStage.addChild(this.bgImg);
     };
     GameControl.prototype.onGameStartHandler = function () {
+        if (this.GameScene && this.GameScene.parent) {
+            this.currentStage.removeChild(this.GameScene);
+        }
+        if (this.GameOver && this.GameOver.parent) {
+            this.currentStage.removeChild(this.GameOver);
+        }
+        this.currentStage.addChild(this.StartGame);
+        // GameApp.xia.visible = false;
+    };
+    GameControl.prototype.onGameHandler = function () {
         if (this.StartGame && this.StartGame.parent) {
             this.currentStage.removeChild(this.StartGame);
         }
         if (this.GameOver && this.GameOver.parent) {
             this.currentStage.removeChild(this.GameOver);
         }
+        console.log("点击之后进来了");
         this.currentStage.addChild(this.GameScene);
         // GameApp.xia.visible = false;
     };

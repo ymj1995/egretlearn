@@ -1,4 +1,4 @@
-//游戏管理
+//游戏结束
 class GameOverLayer extends egret.Sprite{
     // private static _instance:GameControl;
     // public static get Instance(){

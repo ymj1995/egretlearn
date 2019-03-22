@@ -8,7 +8,7 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
-//游戏管理
+//游戏準備
 var StartGameLayer = (function (_super) {
     __extends(StartGameLayer, _super);
     function StartGameLayer() {
@@ -32,7 +32,7 @@ var StartGameLayer = (function (_super) {
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     };
     StartGameLayer.prototype.onButtonClick = function () {
-        GameControl.Instance.onGameStartHandler();
+        GameControl.Instance.onGameHandler();
     };
     StartGameLayer.prototype.createBitmapByName = function (name) {
         var result = new egret.Bitmap();
