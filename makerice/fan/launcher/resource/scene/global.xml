@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<global>
+  <item UID="4511" plugin="AISprite" name="AISprite4510" cacheAsBitmap="false" parallaxX="100" parallaxY="100" index="2" family="displayobject">
+    <item name="name" value="AISprite4510" valueDataType="string"/>
+    <item name="uiGuid" value="4511" valueDataType="string"/>
+    <item name="global" value="true" valueDataType="boolean"/>
+    <item name="visible" value="true" valueDataType="boolean"/>
+    <item name="x" value="741.7806848689667" valueDataType="number"/>
+    <item name="y" value="518.3022530673887" valueDataType="number"/>
+    <item name="anchorX" value="0.5" valueDataType="number"/>
+    <item name="anchorY" value="0.5" valueDataType="number"/>
+    <item name="width" value="276.5431047095297" valueDataType="number"/>
+    <item name="height" value="92.18103490317655" valueDataType="number"/>
+    <item name="angle" value="0" valueDataType="number"/>
+    <item name="alpha" value="1" valueDataType="number"/>
+    <item name="url" value="resource%2FuserAsset%2Fstart.png" valueDataType="string"/>
+    <item name="enabled" value="false" valueDataType="boolean"/>
+    <item name="collision" value="false" valueDataType="boolean"/>
+    <item name="collisionData" value="0%2Fn0.00%7C92.18%2C276.54%7C92.18%2C276.54%7C0.00%2C0.00%7C0.00" sourceValue="0%2Fn0.00%7C92.18%2C276.54%7C92.18%2C276.54%7C0.00%2C0.00%7C0.00" valueDataType="string"/>
+    <item name="layer" value="0" valueDataType="number"/>
+  </item>
+</global>
