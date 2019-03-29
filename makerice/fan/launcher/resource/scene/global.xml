@@ -10,11 +10,11 @@
     <item name="anchorX" value="0.5" valueDataType="number"/>
     <item name="anchorY" value="0.5" valueDataType="number"/>
     <item name="width" value="276.5431047095297" valueDataType="number"/>
-    <item name="height" value="92.18103490317655" valueDataType="number"/>
+    <item name="height" value="92.18103490317657" valueDataType="number"/>
     <item name="angle" value="0" valueDataType="number"/>
     <item name="alpha" value="1" valueDataType="number"/>
     <item name="url" value="resource%2FuserAsset%2Fstart.png" valueDataType="string"/>
-    <item name="enabled" value="false" valueDataType="boolean"/>
+    <item name="enabled" value="true" valueDataType="boolean"/>
     <item name="collision" value="false" valueDataType="boolean"/>
     <item name="collisionData" value="0%2Fn0.00%7C92.18%2C276.54%7C92.18%2C276.54%7C0.00%2C0.00%7C0.00" sourceValue="0%2Fn0.00%7C92.18%2C276.54%7C92.18%2C276.54%7C0.00%2C0.00%7C0.00" valueDataType="string"/>
     <item name="layer" value="0" valueDataType="number"/>

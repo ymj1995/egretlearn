@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eventSheets layout="newScene1" previous="" next="" version="2.2"/>
+<eventSheets layout="newScene1" previous="" next="" version="2.2">
+  <item type="instance" UID="4517"/>
+  <item type="instance" UID="4514"/>
+</eventSheets>

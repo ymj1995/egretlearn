@@ -12,8 +12,10 @@
   <item type="instance" UID="4505"/>
   <item type="event" conditionRelationShip="true" triggerOnceWhileTrue="false">
     <item type="condition" callTarget="instance" paramsClass="OnButtonEndEvent" callName="onButtonEnd" isTrigger="true" target="AISprite4510"/>
+    <item type="condition" callTarget="instance" paramsClass="OnButtonEndEvent" callName="onButtonEnd" isTrigger="true" target="AISprite4510"/>
     <item type="action" persistent="false" callTarget="instance" callName="gotoScene" target="System">
       <item valueDataType="string" value="%22newScene1%22" name="18"/>
     </item>
+    <item type="action" persistent="false" callTarget="instance" callName="clear" target="AISprite4510"/>
   </item>
 </eventSheets>
