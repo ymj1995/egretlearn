@@ -74,7 +74,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.stageW = 0;
+        _this.stageH = 0;
+        return _this;
     }
     Main.prototype.createChildren = function () {
         _super.prototype.createChildren.call(this);
@@ -98,24 +101,12 @@ var Main = (function (_super) {
     };
     Main.prototype.runGame = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var result, userInfo;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.loadResource()];
                     case 1:
                         _a.sent();
                         this.createGameScene();
-                        return [4 /*yield*/, RES.getResAsync("description_json")];
-                    case 2:
-                        result = _a.sent();
-                        this.startAnimation(result);
-                        return [4 /*yield*/, platform.login()];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, platform.getUserInfo()];
-                    case 4:
-                        userInfo = _a.sent();
-                        console.log(userInfo);
                         return [2 /*return*/];
                 }
             });
@@ -130,8 +121,6 @@ var Main = (function (_super) {
                         _a.trys.push([0, 4, , 5]);
                         loadingView = new LoadingUI();
                         this.stage.addChild(loadingView);
-                        //  初始化资源加载库
-                        RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
                         return [4 /*yield*/, RES.loadConfig("resource/default.res.json", "resource/")];
                     case 1:
                         _a.sent();
@@ -152,25 +141,11 @@ var Main = (function (_super) {
             });
         });
     };
-    //  配置文件加载完成，开始加载资源组
-    Main.prototype.onConfigComplete = function (event) {
-        console.log("进来了吗！！！！！！！！！！！");
-        //  移除资源加载库的监听事件
-        RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
-        //  添加各种预加载事件监听
-        // RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
-        // RES.addEventListener(RES.ResourceEvent.CONFIG_LOAD_ERROR, this.onResourceLoadError, this);
-        // RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceLoadProgress, this);
-        //  开始加载组资源
-        // RES.loadGroup("preload");
-        //RES.createGroup("all", ["herojson", "heropng", "bgpng", "uipng"]);
-        //RES.loadGroup("all");
-    };
     Main.prototype.loadTheme = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             // load skin theme configuration file, you can manually modify the file. And replace the default skin.
-            //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
+            //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。 
             var theme = new eui.Theme("resource/default.thm.json", _this.stage);
             theme.addEventListener(eui.UIEvent.COMPLETE, function () {
                 resolve();
@@ -182,56 +157,86 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.createGameScene = function () {
-        var sky = this.createBitmapByName("bg_jpg");
-        this.addChild(sky);
-        var stageW = this.stage.stageWidth;
-        var stageH = this.stage.stageHeight;
-        sky.width = stageW;
-        sky.height = stageH;
-        var topMask = new egret.Shape();
-        topMask.graphics.beginFill(0x000000, 0.5);
-        topMask.graphics.drawRect(0, 0, stageW, 172);
-        topMask.graphics.endFill();
-        topMask.y = 33;
-        this.addChild(topMask);
-        var icon = this.createBitmapByName("egret_icon_png");
-        this.addChild(icon);
-        icon.x = 26;
-        icon.y = 33;
-        var line = new egret.Shape();
-        line.graphics.lineStyle(2, 0xffffff);
-        line.graphics.moveTo(0, 0);
-        line.graphics.lineTo(0, 117);
-        line.graphics.endFill();
-        line.x = 172;
-        line.y = 61;
-        this.addChild(line);
-        var colorLabel = new egret.TextField();
-        colorLabel.textColor = 0xffffff;
-        colorLabel.width = stageW - 172;
-        colorLabel.textAlign = "center";
-        colorLabel.text = "Hello Egret";
-        colorLabel.size = 24;
-        colorLabel.x = 172;
-        colorLabel.y = 80;
-        this.addChild(colorLabel);
-        var textfield = new egret.TextField();
-        this.addChild(textfield);
-        textfield.alpha = 0;
-        textfield.width = stageW - 172;
-        textfield.textAlign = egret.HorizontalAlign.CENTER;
-        textfield.size = 24;
-        textfield.textColor = 0xffffff;
-        textfield.x = 172;
-        textfield.y = 135;
-        this.textfield = textfield;
-        var button = new eui.Button();
-        button.label = "Click!";
-        button.horizontalCenter = 0;
-        button.verticalCenter = 0;
-        this.addChild(button);
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        // let sky = this.createBitmapByName("bg_jpg");
+        //  获取屏幕大小
+        this.stageW = this.stage.stageWidth;
+        this.stageH = this.stage.stageHeight;
+        var stageW = this.stageW;
+        var stageH = this.stageH;
+        //  添加背景
+        // var bg = new (false);
+        // this.addChild(bg);
+        this.BgLayer(false);
+        // 添加標題
+        var title = this.createBitmapByName("uires_1_png");
+        this.addChild(title);
+        title.anchorOffsetX = title.width / 2;
+        title.anchorOffsetY = title.height / 2;
+        title.x = stageW / 2;
+        title.y = stageH / 2;
     };
+    Main.prototype.BgLayer = function (bgMove) {
+        var bgIndex = Math.floor(Math.random() * 5 + 1);
+        var bg1 = this.createBitmapByName("bg" + bgIndex + "_jpg");
+        bg1.width = this.stageW;
+        bg1.height = this.stageH;
+        this.addChild(bg1);
+        this.bg1 = bg1;
+        //  添加背景移动
+        if (bgMove) {
+            var bg2 = new egret.Bitmap();
+            bg2.texture = RES.getRes("bg" + bgIndex + "_jpg");
+            bg2.width = this.stageW;
+            bg2.height = this.stageH;
+            this.addChild(bg2);
+            bg2.x = bg1.width;
+            this.bg2 = bg2;
+            //  创建计时器，不停地更新背景
+            // var timer = new egret.Timer(300, 0);
+            // timer.addEventListener(egret.TimerEvent.TIMER,this.bgMove,this);
+            // this.timer = timer;
+            // timer.start();
+        }
+        // 背景图2要添加月亮
+        if (bgIndex == 2) {
+            var moon = new egret.Bitmap();
+            moon.texture = RES.getRes("moon_png");
+            this.addChild(moon);
+            moon.y = moon.height / 10;
+        }
+    };
+    // // 背景循环滚动
+    // protected bgMove():void {
+    //         console.log("333")
+    //     var bg1 = this.bg1;
+    //     var bg2 = this.bg2;
+    //     bg1.width = this.stageW;
+    //     bg1.height = this.stageH;
+    //     bg2.width = this.stageW;
+    //     bg2.height = this.stageH;
+    //     // 获取两张背景图的x坐标
+    //     var x1 = bg1.x;
+    //     var x2 = bg2.x;
+    //     // 每秒移动距离(像素)
+    //     var speed = 1;
+    //     x1 -= speed;
+    //     x2 -= speed;
+    //     // 图片宽度
+    //     var bgWidth = bg1.width;
+    //     // 如果第一张背景图完全移出到屏幕外，则将第二张图片放置在屏幕正中间，将第一张图片放到第二张图片后面
+    //     if (x1 <= -bgWidth) {
+    //         x2 = 0;
+    //         x1 = bgWidth;
+    //     }
+    //     // 如果第二张背景图完全移出到屏幕外，则将第一张图片放置在屏幕正中间，将第二张图片放到第一张图片后面
+    //     if (x2 <= -bgWidth) {
+    //         x1 = 0;
+    //         x2 = bgWidth;
+    //     }
+    //     // 重新设置背景图片位置
+    //     bg1.x = x1;
+    //     bg2.x = x2;
+    // }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
@@ -241,33 +246,6 @@ var Main = (function (_super) {
         var texture = RES.getRes(name);
         result.texture = texture;
         return result;
-    };
-    /**
-     * 描述文件加载成功，开始播放动画
-     * Description file loading is successful, start to play the animation
-     */
-    Main.prototype.startAnimation = function (result) {
-        var _this = this;
-        var parser = new egret.HtmlTextParser();
-        var textflowArr = result.map(function (text) { return parser.parse(text); });
-        var textfield = this.textfield;
-        var count = -1;
-        var change = function () {
-            count++;
-            if (count >= textflowArr.length) {
-                count = 0;
-            }
-            var textFlow = textflowArr[count];
-            // 切换描述内容
-            // Switch to described content
-            textfield.textFlow = textFlow;
-            var tw = egret.Tween.get(textfield);
-            tw.to({ "alpha": 1 }, 200);
-            tw.wait(2000);
-            tw.to({ "alpha": 0 }, 200);
-            tw.call(change, _this);
-        };
-        change();
     };
     /**
      * 点击按钮
